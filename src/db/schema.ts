@@ -29,3 +29,10 @@ export const bankDetails = sqliteTable("bank_details", {
   iban: text("iban").notNull(),
   bic: text("bic").notNull(),
 });
+
+
+export const visits = sqliteTable("visits", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  country: text("country").notNull().default("Unknown"),
+  createdAt: integer("created_at", { mode: "timestamp" }).notNull().default(new Date()),
+});

@@ -19,6 +19,7 @@ interface Order {
 }
 
 export default function AdminPage() {
+  
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [bank, setBank] = useState({ beneficiary: "", iban: "", bic: "" });
@@ -29,7 +30,10 @@ const [savingBank, setSavingBank] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
-
+  const [stats, setStats] = useState<{ totalVisits: number; countriesStats: { country: string; count: number }[] }>({
+  totalVisits: 0,
+  countriesStats: [],
+});
   // Vérifier si l'admin est déjà connecté (via sessionStorage)
   useEffect(() => {
     const loggedIn = sessionStorage.getItem("admin_logged_in");
@@ -57,6 +61,27 @@ const [savingBank, setSavingBank] = useState(false);
     }
     fetchOrders();
   }, [isAuthenticated]);
+
+  // Charger les statistiques de visites si authentifié
+useEffect(() => {
+  if (!isAuthenticated) return;
+  
+  async function fetchStats() {
+    try {
+      const res = await fetch("/api/admin/stats");
+      if (res.ok) {
+        const data = await res.json();
+        setStats(data);
+      }
+    } catch (err) {
+      console.error("Error fetching stats:", err);
+    }
+  }
+  
+  fetchStats();
+  // Optionnel : Tu peux mettre un setInterval ici si tu veux du rafraîchissement en temps réel
+}, [isAuthenticated]);
+
 
   // Gérer la connexion
   const handleLogin = (e: React.FormEvent) => {
@@ -183,6 +208,49 @@ const handleBankUpdate = async (e: React.FormEvent) => {
           Cerrar Sesión
         </button>
       </div>
+      {/* SECTION STATISTIQUES DE VISITES */}
+<div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "20px", marginBottom: "30px" }}>
+  
+  {/* Carte du Total */}
+  <div style={{ background: "#fff", padding: "20px", borderRadius: "8px", boxShadow: "0 2px 8px rgba(0,0,0,0.05)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+    <i className="fas fa-eye" style={{ fontSize: "32px", color: "#0070f3", marginBottom: "10px" }}></i>
+    <h3 style={{ margin: 0, color: "#666", fontSize: "14px", textTransform: "uppercase" }}>Visitas Totales</h3>
+    <strong style={{ fontSize: "36px", color: "#111", marginTop: "5px" }}>{stats.totalVisits}</strong>
+  </div>
+
+  {/* Tableau/Liste des Pays */}
+  <div style={{ background: "#fff", padding: "20px", borderRadius: "8px", boxShadow: "0 2px 8px rgba(0,0,0,0.05)" }}>
+    <h3 style={{ margin: "0 0 15px 0", fontSize: "16px" }}><i className="fas fa-globe-americas"></i> Origen de los visitantes</h3>
+    <div style={{ maxHeight: "120px", overflowY: "auto" }}>
+      {stats.countriesStats.length === 0 ? (
+        <p style={{ color: "#888", fontSize: "14px" }}>No hay datos de visitas aún.</p>
+      ) : (
+        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "14px" }}>
+          <thead>
+            <tr style={{ borderBottom: "1px solid #eee", textAlign: "left", color: "#666" }}>
+              <th style={{ paddingBottom: "5px" }}>País / Código</th>
+              <th style={{ paddingBottom: "5px", textAlign: "right" }}>Visitas</th>
+            </tr>
+          </thead>
+          <tbody>
+            {stats.countriesStats.map((item, index) => (
+              <tr key={index} style={{ borderBottom: "1px solid #f9f9f9" }}>
+                <td style={{ padding: "6px 0", fontWeight: "500" }}>
+                  <span style={{ marginRight: "8px" }}>📍</span>
+                  {item.country === "Unknown" ? "Desconocido" : item.country}
+                </td>
+                <td style={{ padding: "6px 0", textAlign: "right", fontWeight: "bold", color: "#0070f3" }}>
+                  {item.count}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
+  </div>
+
+</div>
 
 
       <div style={{ background: "#fff", padding: "20px", borderRadius: "8px", boxShadow: "0 2px 8px rgba(0,0,0,0.05)", marginBottom: "30px" }}>
