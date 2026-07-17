@@ -37,7 +37,9 @@ const PRODUCTS_DATA = [
   { id: 58, name: "Electric Treadmills for Home Exercising, 0.6-10MPH Portable Treadmills for Home Small Spaces, 3.5HP Mini Treadmills with Handles", price: 120, category: "Dispositivos electrónicos", image: "/img/ElectricTreadmills.jpg" },
   { id: 59, name: "MOZA R3 Racing Wheel and Pedals Bundle for PC, 3.9Nm Direct Drive WheelBase,11-inch ES Lite Steering Wheel,Pedals and Desk Clamp High-Performance Game", price: 210.99, category: "Dispositivos electrónicos", image: "/img/MOZAR3Racing.jpg" },
   { id: 60, name: "DREAME H15 Pro CarpetFlex aspiradora inalámbrica con mopa, aspiradora húmeda y seca con cepillos duales para pisos duros y alfombras, sin enredos", price: 349, category: "Dispositivos electrónicos", image: "/img/DREAMEH15Pro.jpg" },
-  { id: 61, name: "Cámara de videoconferencia todo en uno de 360° KanDao Meeting Pro, HD 1080p con micrófonos omnidireccionales, enfoque y zoom automáticos, alcance...", price: 120, category: "Dispositivos electrónicos", image: "/img/KanDaoMeeting.jpg" },
+  { id: 61, name: "Cámara de videoconferencia todo en uno de 360° KanDao Meeting Pro, HD 1080p con micrófonos omnidireccionales, enfoque y zoom automáticos, alcance...", price: 699, category: "Dispositivos electrónicos", image: "/img/KanDaoMeeting.jpg" },
+  { id: 62, name: "DJI Osmo Pocket 3 + Transmisor Mic Mini (Negro Obsidiana), cámara para vlogging, micrófono inalámbrico, audio de alta calidad, OsmoAudio, cancelación activa de ruido...", price: 42, category: "Dispositivos electrónicos", image: "/img/DJIOsmoPocket3.jpg" },
+  { id: 63, name: "DJI Osmo Pocket 4 Essential Bundle, cámara de vlogging de bolsillo con gimbal | Sensor CMOS de 1 pulgada y 4K/240 fps, estabilización de 3 ejes, zoom sin pérdidas 2×...", price: 42, category: "Dispositivos electrónicos", image: "/img/BundleEssentielDJIOsmoPocket4.jpg" },
 
   // Videojuegos
   { id: 17, name: "Sony, Consola PlayStation 5 Edición Estándar 1 TB con lector Blu-ray 4K, SSD Ultrarrápido, Audio 3D, Ray Tracing, 1 Mando DualSense con Retroalimentación Háptica", price: 509.99, category: "Dispositivos electrónicos", image: "/img/SonyConsolePlayStation5.jpg" },

@@ -8,9 +8,14 @@ import { CartProvider } from "@/context/CartContext";
 export const metadata: Metadata = {
   metadataBase: new URL("https://espanadeal.es"),
 
+  
+
   title: {
     default: "Espanadeal | Tienda Online en España",
     template: "%s | Espanadeal",
+  },
+  verification: {
+    google: "02EsY9lsHx9uIWWofpJSWyW4yn0bAPTutopuIkN2QNo",
   },
 
   description:
@@ -29,6 +34,7 @@ export const metadata: Metadata = {
     "accesorios",
     "envío rápido",
   ],
+
 
   authors: [
     {
@@ -105,6 +111,8 @@ export default function RootLayout({
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
+
+
 
         <link rel="preconnect" href="https://fonts.gstatic.com" />
 
