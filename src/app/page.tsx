@@ -74,6 +74,16 @@ export function HomePageContent() {
   const [shuffledProducts, setShuffledProducts] = useState<typeof PRODUCTS_DATA>([]);
 
   useEffect(() => {
+    // Cet appel s'exécute automatiquement dès qu'un utilisateur charge le site
+    fetch("/api/visits", { method: "POST" })
+      .then((res) => {
+        if (!res.ok) console.error("Erreur d'enregistrement de la visite");
+      })
+      .catch((err) => console.error("Erreur réseau pour l'API visite :", err));
+  }, []); // Le tableau vide [] fait en sorte que ça ne se déclenche qu'UNE fois par visite
+  // =======
+
+  useEffect(() => {
     // Algorithme de mélange de Fisher-Yates
     const mixProducts = [...PRODUCTS_DATA];
     for (let i = mixProducts.length - 1; i > 0; i--) {
