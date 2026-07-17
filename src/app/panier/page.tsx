@@ -18,13 +18,14 @@ export default function CartPage() {
   const [showSuccessPopup, setShowSuccessPopup] = useState(false); // Étape 1 : Commande reçue
   const [showPaymentModal, setShowPaymentModal] = useState(false); // Étape 2 : Choix du paiement
   const [currentOrderRef, setCurrentOrderRef] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false); 
   const router = useRouter();
 
   // États pour Stripe et les méthodes de paiement
   const [paymentMethod, setPaymentMethod] = useState<"card" | "bank" | null>(null);
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [bankInfo, setBankInfo] = useState({ beneficiary: "Cargando...", iban: "Cargando...", bic: "Cargando..." });
+  const [showEmailPromptPopup, setShowEmailPromptPopup] = useState(false);
 
   const totalPrice = cart.reduce((acc: number, item: any) => acc + item.price * item.quantity, 0);
 
@@ -91,10 +92,11 @@ export default function CartPage() {
     setShowPaymentModal(true); // Ouvre le grand modal de sélection de paiement
   };
 
-  const handlePaymentSuccess = () => {
-    alert("¡Pago recibido con éxito! Muchas gracias por su compra.");
-    handleFinalizeOrder();
-  };
+ const handlePaymentSuccess = () => {
+  // Ouvre le popup d'envoi d'e-mail et ferme le modal de sélection de paiement
+  setShowPaymentModal(false);
+  setShowEmailPromptPopup(true);
+};
 
   const handleFinalizeOrder = () => {
     setShowPaymentModal(false);
@@ -262,6 +264,54 @@ export default function CartPage() {
           </div>
         </div>
       )}
+
+      {/* 3. POPUP DE CONFIRMATION ET D'ENVOI D'E-MAIL APRÈS PAIEMENT */}
+{showEmailPromptPopup && (
+  <div className="payment-modal-overlay" style={{ zIndex: 9999 }}>
+    <div className="payment-modal-card" style={{ textAlign: "center", padding: "40px 30px", maxWidth: "450px" }}>
+      <div style={{ fontSize: "50px", color: "#0070f3", marginBottom: "20px" }}>
+        <i className="fas fa-envelope-open-text"></i>
+      </div>
+      <h2 style={{ fontSize: "22px", color: "#1a1a1a", marginBottom: "12px" }}>¡Pago Recibido con Éxito!</h2>
+      <p style={{ color: "#666", marginBottom: "25px", fontSize: "15px", lineHeight: "1.5" }}>
+        Para agilizar el procesamiento y envío de su pedido <strong>#{currentOrderRef}</strong>, haga clic en le botón de abajo para enviarnos una confirmación a <strong>contact@espanadeal.es</strong>.
+      </p>
+      
+      {/* Bouton Noir d'envoi de mail pré-rempli */}
+      <a 
+        href={`mailto:contact@espanadeal.es?subject=Confirmación de Pago - Pedido %23${currentOrderRef}&body=Hola Espanadeal,%0D%0A%0D%0AHe realizado correctamente el pago con tarjeta para mi pedido %23${currentOrderRef}.%0D%0A%0D%0AUn saludo.`}
+        className="btn-see-more"
+        style={{ 
+          display: "inline-flex", 
+          width: "100%", 
+          marginBottom: "12px", 
+          textDecoration: "none",
+          boxSizing: "border-box"
+        }}
+      >
+        Enviar Correo de Confirmación <i className="fas fa-paper-plane" style={{ marginLeft: "10px" }}></i>
+      </a>
+
+      {/* Lien secondaire discret pour finaliser sans envoyer */}
+      <button
+        onClick={handleFinalizeOrder}
+        style={{
+          background: "none",
+          border: "none",
+          color: "#0070f3",
+          cursor: "pointer",
+          fontSize: "14px",
+          fontWeight: "500",
+          textDecoration: "underline"
+        }}
+        type="button"
+      >
+        Volver a la tienda
+      </button>
+    </div>
+  </div>
+)}
     </div>
   );
 }
+

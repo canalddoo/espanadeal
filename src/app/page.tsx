@@ -68,9 +68,9 @@ export function HomePageContent() {
   const searchQuery = searchParams.get("search")?.toLowerCase() || "";
   const categoryQuery = searchParams.get("cat") || "";
 
+ 
   // =========================================================================
-  // AJOUT ICI : État et effet pour mélanger les produits aléatoirement
-  // =========================================================================
+
   const [shuffledProducts, setShuffledProducts] = useState<typeof PRODUCTS_DATA>([]);
 
   useEffect(() => {
@@ -92,7 +92,7 @@ export function HomePageContent() {
     }
     setShuffledProducts(mixProducts);
   }, []); // S'exécute une seule fois à l'arrivée sur le site
-  // =========================================================================
+  
 
   // 2. Traducción de los slugs de URL
   const categoryMapping: { [key: string]: string } = {
@@ -255,7 +255,7 @@ export function HomePageContent() {
   );
 }
 
-// Next.js requiere envolver useSearchParams en Suspense durante la compilación en producción
+
 export default function HomePage() {
   return (
     <Suspense fallback={<div style={{textAlign:"center", }}>Cargando...</div>}>
