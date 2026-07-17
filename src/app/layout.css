@@ -1,0 +1,525 @@
+/* src/app/layout.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* --- DECLARATION DES VARIABLES DE COULEURS & CONFIG --- */
+:root {
+  --color-primary: #004AAD;    /* Bleu principal Espanadeal */
+  --color-white: #FFFFFF;      /* Blanc */
+  --color-black: #1A1A1A;      /* Noir doux pour le texte */
+  --color-gray-bg: #F0F2F5;    /* Gris clair pour fond recherche */
+  --color-gray-border: #E5E7EB;/* Gris pour les séparations */
+  --color-text-muted: #4B5563; /* Gris pour les sous-titres et icônes */
+  --color-accent: #FF9900;     /* Couleur orange/feu pour le produit vedette */
+  --font-main: 'Poppins', sans-serif;
+}
+
+/* --- REINITIALISATION DE BASE --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* --- STRUCTURE DU HEADER GLOBAL --- */
+.header-container {
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-gray-border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  font-family: var(--font-main);
+    font-family: 'Poppins', sans-serif;
+}
+
+/* --- NIVEAU 1 : MAIN NAVBAR --- */
+.main-navbar {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 15px 20px;
+  gap: 30px;
+  font-family: var(--font-main);
+    font-family: 'Poppins', sans-serif;
+}
+
+.burger-menu {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: var(--color-black);
+  cursor: pointer;
+}
+
+.nav-logo img {
+  /* object-fit: contain; */
+  display: block;
+  width: 100%;
+  height: 40px;
+}
+
+/* --- RECHERCHE DESKTOP --- */
+.nav-search-container {
+  flex: 1;
+  max-width: 650px;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-gray-bg);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid transparent;
+  transition: all 0.3s;
+}
+
+.search-form:focus-within {
+  border-color: var(--color-primary);
+  background-color: var(--color-white);
+  box-shadow: 0 0 0 3px rgba(0, 74, 173, 0.1);
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 12px 15px;
+  font-size: 14px;
+  outline: none;
+  color: var(--color-black);
+}
+
+.search-select-wrapper {
+  border-left: 1px solid rgba(0,0,0,0.1);
+  padding: 0 10px;
+}
+
+.search-category {
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  outline: none;
+  cursor: pointer;
+  padding-right: 5px;
+}
+
+.search-button {
+  background: transparent;
+  border: none;
+  padding: 0 20px;
+  color: var(--color-text-muted);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* --- ACTIONS PANIER / COMPTE --- */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  
+}
+
+.nav-actions .action-icon {
+  color: var(--color-black);
+  text-decoration: none;
+  transition: color 0.2s;
+  font-family: var(--font-main);
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.action-icon:hover {
+  color: var(--color-primary);
+}
+
+/* --- NIVEAU 2 : BOTTOM NAVBAR (LIENS DU BAS) --- */
+.bottom-navbar {
+    display: flex;
+    justify-content: space-around;
+  border-top: 1px solid var(--color-gray-border);
+  background-color: var(--color-white);
+  font-size: 15px;
+  font-weight: 800;
+  /* justify-content: space-around; */
+}
+
+.bottom-navbar-container {
+  /* min-width: 100px; */
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 10px 50px;
+}
+
+.category-menu-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  padding-right: 20px;
+  border-right: 1px solid var(--color-gray-border);
+}
+
+.category-menu-dropdown .arrow-down {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 25px;
+  flex: 1;
+  padding-left: 25px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--color-black);
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--color-primary);
+}
+
+.nav-links .link-featured {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* --- STYLE DU LIEN ACTIF DANS LA NAVBAR --- */
+.nav-links a.active-link,
+.sidebar-nav-links a.active-link {
+  color: #004AAD !important; /* Ta couleur bleue principale */
+  font-weight: 600; /* Légèrement plus épais pour se démarquer */
+  position: relative;
+}
+
+/* Optionnel : Ajoute une petite ligne discrète sous le lien actif sur Desktop */
+@media (min-width: 769px) {
+  .nav-links a.active-link::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #004AAD;
+    border-radius: 2px;
+  }
+}
+.icon-fire {
+  color: var(--color-accent);
+}
+
+.nav-phone a {
+  text-decoration: none;
+  color: var(--color-black);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* --- FOOTER GENERAL --- */
+.main-footer {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  text-align: center;
+  padding: 30px 20px;
+  margin-top: 50px;
+  font-size: 14px;
+}
+
+
+/* ------------------------------------------------------------- */
+/* --- SYSTEME MOBILE SIDEBAR (RESTE SUR REQUETE MEDIA 768px) -- */
+/* ------------------------------------------------------------- */
+
+/* L'arrière-plan flouté/sombre */
+.mobile-sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-sidebar-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Le tiroir de la sidebar */
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  left: -320px; /* Caché au départ à gauche */
+  width: 300px;
+  height: 100%;
+  background-color: var(--color-white);
+  z-index: 2001;
+  box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  transition: left 0.3s ease;
+}
+
+.mobile-sidebar-overlay.active .mobile-sidebar {
+  left: 0; /* Entre à l'écran */
+}
+
+/* Zone Utilisateur Haut mobile */
+.sidebar-header {
+  background-color: #EAEAEA;
+  padding: 20px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.user-avatar {
+  font-size: 18px;
+}
+
+.close-sidebar {
+  background: none;
+  border: 1px dashed var(--color-text-muted);
+  font-size: 18px;
+  padding: 4px 8px;
+  cursor: pointer;
+  color: var(--color-black);
+}
+
+/* Corps interne de la Sidebar */
+.sidebar-body {
+  overflow-y: auto;
+  padding: 15px;
+}
+
+.mobile-search-wrapper {
+  margin-bottom: 20px;
+}
+
+.mobile-search-form {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-border);
+}
+
+.imagine-im {
+  display: none; 
+}
+
+.mobile-btn-blue {
+  background-color: var(--color-primary) !important;
+  color: var(--color-white) !important;
+  padding: 12px 20px !important;
+}
+
+.sidebar-privacy-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--color-black);
+  font-size: 14px;
+  padding: 5px 0;
+}
+
+.sidebar-divider {
+  height: 1px;
+  background-color: var(--color-gray-border);
+  margin: 15px 0;
+}
+
+.sidebar-section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.see-all-link {
+  color: var(--color-text-muted);
+  font-size: 13px;
+  text-decoration: underline;
+}
+
+/* Liste des catégories sur mobile */
+.sidebar-categories-list, .sidebar-nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.sidebar-categories-list a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+}
+
+.sidebar-categories-list a i {
+  width: 20px;
+  color: var(--color-black);
+}
+
+.bold-item {
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+/* Liens des pages sur mobile */
+.sidebar-nav-links a {
+  text-decoration: none;
+  color: var(--color-black);
+  font-size: 15px;
+  font-weight: 500;
+  display: block;
+  padding: 5px 0;
+}
+
+
+/* ------------------------------------------- */
+/* --- CONDITIONS MEDIA POUR TOUT MASQUER ---- */
+/* ------------------------------------------- */
+@media (max-width: 992px) {
+  .desktop-search, .bottom-navbar {
+    display: none; /* Coupe la navigation double et la recherche desktop globale */
+  }
+  .imagine-im {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+ margin-top: 10px;
+margin: auto;
+width: 95%;
+
+
+
+
+ 
+}
+  .burger-menu {
+    display: block; /* Active le burger */
+  }
+  
+  .fav-desktop {
+    display: none; /* Cache le favori direct sur mobile */
+  }
+
+  .main-navbar {
+    padding: 8px 10px;
+  }
+}
+
+
+
+/* --- STYLE DU FOOTER MINIMALISTE --- */
+.main-footer {
+display: flex;
+  background-color: #F8F9FA; /* Fond gris très clair et discret */
+  border-top: 1px solid var(--color-gray-border);
+  padding: 20px 0;
+  margin-top: 80px;
+  width: 100%;
+  flex-direction: column;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Style des liens */
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: var(--color-text-muted);
+  font-size: 13px;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--color-primary); /* Devient bleu au survol */
+}
+
+/* Style du Copyright */
+.footer-copyright {
+  font-size: 15px;
+  color: var(--color-black);
+}
+
+.footer-copyright strong {
+  color: var(--color-primary); 
+  font-weight: 800;
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .footer-links {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px; 
+  }
+}

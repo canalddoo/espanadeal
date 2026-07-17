@@ -1,0 +1,9 @@
+{
+  "schema": "./src/db/schema.ts",
+  "out": "./drizzle",
+  "dialect": "turso",
+  "dbCredentials": {
+    "url": "libsql://ton-lien-turso.turso.io",
+    "authToken": "ton-token-secret"
+  }
+} 
