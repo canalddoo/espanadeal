@@ -1,44 +1,63 @@
 import { PRODUCTS_DATA } from "@/lib/products";
 import { notFound } from "next/navigation";
+import ProductActions from "./ProductActions";
+import "./product.css";
 
-export default function ProductPage({
+
+export default async function ProductPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
 
+  const { id } = await params;
+
   const product = PRODUCTS_DATA.find(
-    (p) => p.id === Number(params.id)
+    (p) => p.id === Number(id)
   );
 
   if (!product) {
     notFound();
   }
 
+
   return (
-    <main className="max-w-5xl mx-auto p-6">
+    <main className="product-detail">
 
-      <img
-        src={product.image}
-        alt={product.name}
-        className="w-96"
-      />
+      <div className="product-detail-image">
+        <img
+          src={product.image}
+          alt={product.name}
+        />
+      </div>
 
-      <h1 className="text-3xl font-bold mt-5">
-        {product.name}
-      </h1>
 
-      <p className="text-xl mt-3">
-        {product.price} €
-      </p>
+      <div className="product-detail-info">
 
-      <p className="mt-5">
-        Categoría : {product.category}
-      </p>
+        <span className="product-detail-cat">
+          {product.category}
+        </span>
 
-      <button className="mt-5 bg-black text-white px-5 py-3 rounded">
-        Comprar
-      </button>
+
+        <h1>
+          {product.name}
+        </h1>
+
+
+        <p className="product-detail-price">
+          {product.price.toLocaleString()} €
+        </p>
+
+
+        <p className="product-detail-description">
+          Producto disponible en Espanadeal.
+          Envío rápido y compra segura.
+        </p>
+
+
+        <ProductActions product={product} />
+
+      </div>
 
     </main>
   );

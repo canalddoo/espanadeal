@@ -43,6 +43,7 @@ body {
   position: relative;
 }
 /* GRILLE RESPONSIVE PRO (4 colonnes desktop, 3 tablette, 2 mobile) */
+
 .products-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -50,6 +51,7 @@ body {
 }
 
 /* CARTE PRODUIT STYLE MINI */
+
 .product-card {
   background: #ffffff;
   display: flex;
