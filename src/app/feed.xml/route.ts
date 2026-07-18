@@ -111,7 +111,7 @@ ${cdata(
 
 
 <link>
-${cdata(`https://espanadeal.es/products/${product.id}`)}
+${cdata(`https://espanadeal.es/produits/${product.id}`)}
 </link>
 
 
