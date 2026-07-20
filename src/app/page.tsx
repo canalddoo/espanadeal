@@ -11,7 +11,7 @@ const PRODUCTS_DATA = [
   // DISPOSITIVOS ELECTRÓNICOS
   // ==========================================
   // ==========================================
-  // DISPOSITIVOS ELECTRÓNICOS & VIDEOJUEGOS (18 Productos)
+  // DISPOSITIVOS ELECTRÓNICOS & VIDEOJUEGOS (18 Productos) 
   // ==========================================
   { id: 1, name: "iPhone 11", price: 125, category: "Dispositivos electrónicos", image: "https://c0.lestechnophiles.com/www.frandroid.com/wp-content/uploads/2019/08/apple-iphone-11-frandroid-2019.png?webp=1&resize=580,580&key=fcb2a39b" },
   { id: 2, name: "iPhone 12", price: 150, category: "Dispositivos electrónicos", image: "https://c0.lestechnophiles.com/images.frandroid.com/wp-content/uploads/2020/10/iphone-12-frandroid-2020-768x768.png?webp=1&resize=580,580&key=1b5d60de" },
