@@ -1667,3 +1667,107 @@ body {
 .btn-see-more:hover i {
   transform: translateX(4px); /* Petit effet de flèche qui bouge au survol */
 }
+
+
+
+
+/* Style de base pour la page CGV */
+.cgv-container {
+  font-family: 'Poppins', sans-serif;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  color: #1e293b;
+  line-height: 1.7;
+}
+
+.cgv-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #f1f5f9;
+}
+
+.cgv-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.cgv-subtitle {
+  font-size: 0.9rem;
+  color: #64748b;
+  text-transform: capitalize;
+}
+
+.cgv-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.cgv-section {
+  background-color: #ffffff;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: box-shadow 0.2s ease;
+}
+
+.cgv-section:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.cgv-section h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 1rem;
+}
+
+.cgv-section p {
+  font-size: 0.95rem;
+  color: #475569;
+  margin-bottom: 0.75rem;
+}
+
+.cgv-section p:last-child {
+  margin-bottom: 0;
+}
+
+.cgv-section strong {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+/* Responsiveness pour écrans mobiles */
+@media (max-width: 640px) {
+  .cgv-container {
+    padding: 2rem 1rem;
+  }
+
+  .cgv-title {
+    font-size: 1.75rem;
+  }
+
+  .cgv-section {
+    padding: 1.25rem 1.25rem;
+  }
+}
+
+
+/* Style pour les listes dans les pages légales */
+.cgv-section ul {
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+  padding-left: 1.25rem;
+}
+
+.cgv-section li {
+  font-size: 0.95rem;
+  color: #475569;
+  margin-bottom: 0.4rem;
+}

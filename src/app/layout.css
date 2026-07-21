@@ -456,11 +456,9 @@ width: 95%;
   }
 }
 
-
-
 /* --- STYLE DU FOOTER MINIMALISTE --- */
 .main-footer {
-display: flex;
+  display: flex;
   background-color: #F8F9FA; /* Fond gris très clair et discret */
   border-top: 1px solid var(--color-gray-border);
   padding: 20px 0;
@@ -470,15 +468,14 @@ display: flex;
 }
 
 .footer-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
   max-width: 1400px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
 }
 
 /* Style des liens */
