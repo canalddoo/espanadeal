@@ -8,15 +8,15 @@ const FEATURED_PRODUCTS = [
   { 
     id: 10, 
     name: "Apple iPhone 16 (128 GB) - Cian + Funda Transparente con MagSafe", 
-    price: 806, 
+    price: 669.99, 
     category: "Dispositivos electrónicos", 
     image: "/img/iPhone16.jpg", 
     tag: "Favorito" 
   },
   { 
     id: 17, 
-    name: "Sony, Consola PlayStation 5 Edición Estándar 1 TB con lector Blu-ray 4K, SSD Ultrarrápido, Audio 3D, Ray Tracing, 1 Mando DualSense con Retroalimentación Háptica", 
-    price: 509.99, 
+    name: "Sony, Consola PlayStation 5 Edición Estándar 1 TB con lector Blu-ray 4K, SSD Ultrarrápido, Audio 3D", 
+    price: 479.99, 
     category: "Dispositivos electrónicos", 
     image: "/img/SonyConsolePlayStation5.jpg", 
     tag: "Más Vendido" 
@@ -24,23 +24,23 @@ const FEATURED_PRODUCTS = [
   { 
     id: 24, 
     name: "Skechers Uno-Night Shades, Zapatillas", 
-    price: 52.99, 
+    price: 54.99, 
     category: "Deporte / Fitness", 
     image: "/img/SkechersUno-NightShades.jpg", 
     tag: "Popular" 
   },
   { 
     id: 32, 
-    name: "JEANNE ARTHES - Perfume para Hombre Sexy Boy Intense - Eau de Parfum - Frasco Vaporizador de 100 ml", 
-    price: 5.12, 
-    category: "Belleza y cuidado personal", 
+    name: "JEANNE ARTHES - Perfume para Hombre Sexy Boy Intense - Eau de Parfum - 100 ml", 
+    price: 5.99, 
+    category: "Belleza y cuidado", 
     image: "/img/JEANNEARTHES.jpg", 
     tag: "Tendencia" 
   },
   { 
     id: 36, 
     name: "Ninja Foodi FlexDrawer Freidora de Aire, Dual Zone Con Separador Extraíble", 
-    price: 156, 
+    price: 149, 
     category: "Cocina", 
     image: "/img/NinjaFoodiFlexDrawerAir.jpg", 
     tag: "Mejor Valoración" 
@@ -48,16 +48,15 @@ const FEATURED_PRODUCTS = [
   { 
     id: 42, 
     name: "URLIFE Bicicleta Eléctrica para Adultos, Neumáticos Anchos de 16\"", 
-    price: 1299, 
+    price: 1199, 
     category: "Deporte / Fitness", 
     image: "/img/URLIFEVeloelectrique.jpg", 
     tag: "Oferta Especial" 
   },
-  // Nouveaux produits ajoutés en plus :
   { 
     id: 39, 
     name: "iPhone 17 Pro Max", 
-    price: 1199, 
+    price: 899.99, 
     category: "Dispositivos electrónicos", 
     image: "https://c0.lestechnophiles.com/images.frandroid.com/wp-content/uploads/2025/09/apple-iphone-17-pro-max-frandroid-2025-768x768.png?webp=1&key=edb35fd1", 
     tag: "Nueva Generación" 
@@ -65,28 +64,29 @@ const FEATURED_PRODUCTS = [
   { 
     id: 13, 
     name: "Apple AirPods Pro 3 Auriculares Inalámbricos, Cancelación Activa de Ruido", 
-    price: 150, 
+    price: 149, 
     category: "Dispositivos electrónicos", 
     image: "/img/AppleAirPodsPro3.jpg", 
     tag: "Recomendado" 
   },
   { 
     id: 31, 
-    name: "CeraVe Crema Hidratante para Rostro y Cuerpo, Hidratación 48H, Tecnología MVE + 3 Ceramidas + Ácido Hialurónico", 
-    price: 16.25, 
-    category: "Belleza y cuidado personal", 
+    name: "CeraVe Crema Hidratante para Rostro y Cuerpo, Hidratación 48H", 
+    price: 16.99, 
+    category: "Belleza y cuidado", 
     image: "/img/CeraVeBaume.jpg", 
     tag: "Top Calidad" 
   },
   { 
     id: 37, 
-    name: "ECOVACS T50 Omni GEN2 Robot Aspirador con Estación, Potencia de 21000 Pa, Cepillo lateral y mopa", 
-    price: 270, 
+    name: "ECOVACS T50 Omni GEN2 Robot Aspirador con Estación, Potencia de 21000 Pa", 
+    price: 269, 
     category: "Hogar", 
     image: "/img/ECOVACST50OmniGEN2Aspirateur.jpg", 
     tag: "Alta Tecnología" 
   }
 ];
+
 export default function FeaturedPage() {
   const { addToCart } = useCart();
   const router = useRouter();
