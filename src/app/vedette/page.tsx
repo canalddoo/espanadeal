@@ -5,13 +5,30 @@ import { useRouter } from "next/navigation";
 
 // Selección de los mejores productos reales de tu lista PRODUCTS_DATA
 const FEATURED_PRODUCTS = [
+  // --- DISPOSITIVOS ELECTRÓNICOS Y GAMING ---
   { 
     id: 10, 
-    name: "Apple iPhone 16 (128 GB) - Cian + Funda Transparente con MagSafe", 
+    name: "Apple iPhone 16 (128 GB) (Reacondicionado) - Cian + Funda Transparente con MagSafe", 
     price: 669.99, 
     category: "Dispositivos electrónicos", 
     image: "/img/iPhone16.jpg", 
     tag: "Favorito" 
+  },
+  { 
+    id: 9, 
+    name: "iPhone 15 Pro Max (Reacondicionado)", 
+    price: 519.99, 
+    category: "Dispositivos electrónicos", 
+    image: "https://c0.lestechnophiles.com/images.frandroid.com/wp-content/uploads/2023/09/iphone-15-pro-max-768x768.png?webp=1&key=6d7ed62f", 
+    tag: "Novedad" 
+  },
+  { 
+    id: 4, 
+    name: "iPhone 13 (Reacondicionado)", 
+    price: 299.99, 
+    category: "Dispositivos electrónicos", 
+    image: "https://c0.lestechnophiles.com/images.frandroid.com/wp-content/uploads/2021/09/apple-iphone-13-frandroid-2021-768x768.png?webp=1&key=a6b052d7", 
+    tag: "Calidad / Precio" 
   },
   { 
     id: 17, 
@@ -22,44 +39,12 @@ const FEATURED_PRODUCTS = [
     tag: "Más Vendido" 
   },
   { 
-    id: 24, 
-    name: "Skechers Uno-Night Shades, Zapatillas", 
-    price: 54.99, 
-    category: "Deporte / Fitness", 
-    image: "/img/SkechersUno-NightShades.jpg", 
-    tag: "Popular" 
-  },
-  { 
-    id: 32, 
-    name: "JEANNE ARTHES - Perfume para Hombre Sexy Boy Intense - Eau de Parfum - 100 ml", 
-    price: 5.99, 
-    category: "Belleza y cuidado", 
-    image: "/img/JEANNEARTHES.jpg", 
-    tag: "Tendencia" 
-  },
-  { 
-    id: 36, 
-    name: "Ninja Foodi FlexDrawer Freidora de Aire, Dual Zone Con Separador Extraíble", 
-    price: 149, 
-    category: "Cocina", 
-    image: "/img/NinjaFoodiFlexDrawerAir.jpg", 
-    tag: "Mejor Valoración" 
-  },
-  { 
-    id: 42, 
-    name: "URLIFE Bicicleta Eléctrica para Adultos, Neumáticos Anchos de 16\"", 
-    price: 1199, 
-    category: "Deporte / Fitness", 
-    image: "/img/URLIFEVeloelectrique.jpg", 
-    tag: "Oferta Especial" 
-  },
-  { 
-    id: 39, 
-    name: "iPhone 17 Pro Max", 
-    price: 899.99, 
+    id: 19, 
+    name: "Nintendo Switch (OLED) Consola de Juegos Portátil de 17,8 cm, 64 GB, Pantalla Táctil, WiFi, Blanco", 
+    price: 199, 
     category: "Dispositivos electrónicos", 
-    image: "https://c0.lestechnophiles.com/images.frandroid.com/wp-content/uploads/2025/09/apple-iphone-17-pro-max-frandroid-2025-768x768.png?webp=1&key=edb35fd1", 
-    tag: "Nueva Generación" 
+    image: "/img/NintendoSwitch.jpg", 
+    tag: "Popular" 
   },
   { 
     id: 13, 
@@ -70,12 +55,48 @@ const FEATURED_PRODUCTS = [
     tag: "Recomendado" 
   },
   { 
-    id: 31, 
-    name: "CeraVe Crema Hidratante para Rostro y Cuerpo, Hidratación 48H", 
-    price: 16.99, 
-    category: "Belleza y cuidado", 
-    image: "/img/CeraVeBaume.jpg", 
-    tag: "Top Calidad" 
+    id: 14, 
+    name: "Sony WH-1000XM5SA Edición Especial con estuche blando, Cancelación Activa de Ruido, Bluetooth", 
+    price: 209, 
+    category: "Dispositivos electrónicos", 
+    image: "/img/SonyWH-1000XM5SA.jpg", 
+    tag: "Audio Premium" 
+  },
+
+  // --- DEPORTE & FITNESS ---
+  { 
+    id: 42, 
+    name: "URLIFE Bicicleta Eléctrica para Adultos, Neumáticos Anchos de 16\"", 
+    price: 1199, 
+    category: "Deporte / Fitness", 
+    image: "/img/URLIFEVeloelectrique.jpg", 
+    tag: "Oferta Especial" 
+  },
+  { 
+    id: 24, 
+    name: "Skechers Uno-Night Shades, Zapatillas", 
+    price: 54.99, 
+    category: "Deporte / Fitness", 
+    image: "/img/SkechersUno-NightShades.jpg", 
+    tag: "Tendencia Moda" 
+  },
+  { 
+    id: 27, 
+    name: "Kit de Mancuernas Ajustables (20kg)", 
+    price: 45, 
+    category: "Deporte / Fitness", 
+    image: "/img/Halteres-reglables.jpg", 
+    tag: "Esencial Fitness" 
+  },
+
+  // --- COCINA & HOGAR ---
+  { 
+    id: 36, 
+    name: "Ninja Foodi FlexDrawer Freidora de Aire, Dual Zone Con Separador Extraíble", 
+    price: 149, 
+    category: "Cocina", 
+    image: "/img/NinjaFoodiFlexDrawerAir.jpg", 
+    tag: "Mejor Valoración" 
   },
   { 
     id: 37, 
@@ -84,6 +105,32 @@ const FEATURED_PRODUCTS = [
     category: "Hogar", 
     image: "/img/ECOVACST50OmniGEN2Aspirateur.jpg", 
     tag: "Alta Tecnología" 
+  },
+  { 
+    id: 57, 
+    name: "DREAME H15 Pro CarpetFlex aspiradora inalámbrica con mopa, aspiradora húmeda y seca", 
+    price: 359, 
+    category: "Hogar", 
+    image: "/img/DREAMEH15Pro.jpg", 
+    tag: "Top Limpieza" 
+  },
+
+  // --- BELLEZA Y CUIDADO PERSONAL ---
+  { 
+    id: 31, 
+    name: "CeraVe Crema Hidratante para Rostro y Cuerpo, Hidratación 48H", 
+    price: 16.99, 
+    category: "Belleza y cuidado personal", 
+    image: "/img/CeraVeBaume.jpg", 
+    tag: "Top Calidad" 
+  },
+  { 
+    id: 32, 
+    name: "JEANNE ARTHES - Perfume para Hombre Sexy Boy Intense - Eau de Parfum - 100 ml", 
+    price: 5.99, 
+    category: "Belleza y cuidado personal", 
+    image: "/img/JEANNEARTHES.jpg", 
+    tag: "Tendencia" 
   }
 ];
 
