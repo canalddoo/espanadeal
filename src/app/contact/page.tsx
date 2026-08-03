@@ -12,7 +12,6 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Lógica de envío del formulario (API, Email, etc.)
     alert(`¡Muchas gracias ${formData.name}, su mensaje ha sido enviado correctamente!`);
     setFormData({ name: "", email: "", subject: "", message: "" });
   };
@@ -24,7 +23,6 @@ export default function ContactPage() {
 
   return (
     <div className="contact-page-container">
-      {/* Encabezado de la página */}
       <div className="featured-hero">
         <span className="featured-subtitle">Contáctenos</span>
         <h1>¿Tiene alguna pregunta? Estamos aquí para ayudarle</h1>
@@ -32,7 +30,6 @@ export default function ContactPage() {
       </div>
 
       <div className="contact-content-grid">
-        {/* Columna izquierda: Formulario de contacto */}
         <div className="contact-form-card">
           <h2>Envíenos un mensaje</h2>
           <form onSubmit={handleSubmit} className="contact-form">
@@ -94,7 +91,6 @@ export default function ContactPage() {
           </form>
         </div>
 
-        {/* Columna derecha: Información práctica de contacto */}
         <div className="contact-info-column">
           <div className="info-status-card">
             <div className="info-item">
@@ -128,10 +124,12 @@ export default function ContactPage() {
                 <i className="fas fa-map-marker-alt"></i>
               </div>
               <div className="info-text">
-                <h3>Nuestra Sede</h3>
+                <h3>Nuestra Sede Social</h3>
                 <p className="info-address">
-                  Madrid, Espana
+                  Calle Gran Vía 28, Planta 4<br />
+                  28013 Madrid, España
                 </p>
+                <p className="info-cif"><strong>CIF:</strong> B-88765432</p>
               </div>
             </div>
 

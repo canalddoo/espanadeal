@@ -456,15 +456,15 @@ width: 95%;
   }
 }
 
-/* --- STYLE DU FOOTER MINIMALISTE --- */
+/* --- STYLE DU FOOTER MULTI-COLONNES --- */
 .main-footer {
   display: flex;
-  background-color: #F8F9FA; /* Fond gris très clair et discret */
-  border-top: 1px solid var(--color-gray-border);
-  padding: 20px 0;
+  flex-direction: column;
+  background-color: #F8F9FA; /* Fond gris très clair et propre */
+  border-top: 1px solid var(--color-gray-border, #E5E7EB);
+  padding: 50px 0 20px 0;
   margin-top: 80px;
   width: 100%;
-  flex-direction: column;
 }
 
 .footer-container {
@@ -472,51 +472,113 @@ width: 95%;
   width: 100%;
   margin: 0 auto;
   padding: 0 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colonnes égales */
+  gap: 40px;
 }
 
-/* Style des liens */
-.footer-links {
+/* --- COLONNES DU FOOTER --- */
+.footer-col {
   display: flex;
-  gap: 20px;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.footer-links a {
+.footer-col h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--color-primary, #000000);
+  margin-bottom: 5px;
+  letter-spacing: 0.5px;
+}
+
+.footer-col h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-black, #111111);
+  margin-bottom: 5px;
+}
+
+.footer-company-info,
+.footer-contact-info {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-muted, #4B5563);
+}
+
+.footer-contact-info strong {
+  color: var(--color-black, #111111);
+}
+
+/* Liens des colonnes */
+.footer-links-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links-list li,
+.footer-links-list a {
+  font-size: 14px;
+  color: var(--color-text-muted, #4B5563);
   text-decoration: none;
-  color: var(--color-text-muted);
-  font-size: 13px;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
-.footer-links a:hover {
-  color: var(--color-primary); /* Devient bleu au survol */
+.footer-links-list a:hover {
+  color: var(--color-primary, #2563EB); /* Bleu au survol */
 }
 
-/* Style du Copyright */
+/* --- BAS DU FOOTER (COPYRIGHT) --- */
+.footer-bottom {
+  max-width: 1400px;
+  width: 100%;
+  margin: 40px auto 0 auto;
+  padding: 20px 20px 0 20px;
+  border-top: 1px solid var(--color-gray-border, #E5E7EB);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .footer-copyright {
-  font-size: 15px;
-  color: var(--color-black);
+  font-size: 14px;
+  color: var(--color-text-muted, #6B7280);
+  text-align: center;
 }
 
 .footer-copyright strong {
-  color: var(--color-primary); 
-  font-weight: 800;
+  color: var(--color-primary, #111111);
+  font-weight: 700;
 }
 
-/* --- RESPONSIVE MOBILE --- */
-@media (max-width: 768px) {
+/* --- RESPONSIVE MOBILE & TABLETTE --- */
+@media (max-width: 992px) {
   .footer-container {
-    flex-direction: column;
-    gap: 12px;
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur tablette */
+    gap: 30px;
+  }
+}
+
+@media (max-width: 640px) {
+  .main-footer {
+    padding: 40px 0 20px 0;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr; /* 1 seule colonne sur mobile */
+    gap: 30px;
     text-align: center;
   }
 
-  .footer-links {
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px; 
+  .footer-col {
+    align-items: center;
+  }
+
+  .footer-links-list {
+    align-items: center;
   }
 }
