@@ -129,7 +129,7 @@ export default function ContactPage() {
                   Calle Gran Vía 28, Planta 4<br />
                   28013 Madrid, España
                 </p>
-                <p className="info-cif"><strong>CIF:</strong> B-88765432</p>
+                <p className="info-cif"><strong>CIF:</strong> 47609196R</p>
               </div>
             </div>
 
