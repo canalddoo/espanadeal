@@ -19,21 +19,21 @@ interface Order {
 }
 
 export default function AdminPage() {
-  
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [bank, setBank] = useState({ beneficiary: "", iban: "", bic: "" });
-const [savingBank, setSavingBank] = useState(false);
-  
+  const [savingBank, setSavingBank] = useState(false);
+
   // États pour la sécurité / Login
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
   const [stats, setStats] = useState<{ totalVisits: number; countriesStats: { country: string; count: number }[] }>({
-  totalVisits: 0,
-  countriesStats: [],
-});
+    totalVisits: 0,
+    countriesStats: [],
+  });
+
   // Vérifier si l'admin est déjà connecté (via sessionStorage)
   useEffect(() => {
     const loggedIn = sessionStorage.getItem("admin_logged_in");
@@ -63,30 +63,32 @@ const [savingBank, setSavingBank] = useState(false);
   }, [isAuthenticated]);
 
   // Charger les statistiques de visites si authentifié
-useEffect(() => {
-  if (!isAuthenticated) return;
-  
-  async function fetchStats() {
-    try {
-      const res = await fetch("/api/admin/stats");
-      if (res.ok) {
-        const data = await res.json();
-        setStats(data);
-      }
-    } catch (err) {
-      console.error("Error fetching stats:", err);
-    }
-  }
-  
-  fetchStats();
-  // Optionnel : Tu peux mettre un setInterval ici si tu veux du rafraîchissement en temps réel
-}, [isAuthenticated]);
+  useEffect(() => {
+    if (!isAuthenticated) return;
 
+    async function fetchStats() {
+      try {
+        const res = await fetch("/api/admin/stats");
+        if (res.ok) {
+          const data = await res.json();
+          setStats(data);
+        }
+      } catch (err) {
+        console.error("Error fetching stats:", err);
+      }
+    }
+
+    fetchStats();
+  }, [isAuthenticated]);
 
   // Gérer la connexion
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (username === "Admin" && password === "Admin12") {
+
+    const expectedUsername = process.env.NEXT_PUBLIC_ADMIN_USERNAME;
+    const expectedPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD;
+
+    if (username === expectedUsername && password === expectedPassword) {
       setIsAuthenticated(true);
       sessionStorage.setItem("admin_logged_in", "true");
       setLoginError("");

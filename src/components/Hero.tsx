@@ -11,7 +11,7 @@ const SLIDES_DATA = [
     description: "Equípate con lo mejor de la tecnología. Encuentra el iPhone, la PlayStation 5, la Nintendo Switch y nuestros auriculares Bluetooth con entrega rápida en España.",
     image: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=1000&auto=format&fit=crop&q=80",
     btnText: "Ver High-Tech",
-    link: "/productos?cat=electronique"
+    link: "/produits?cat=electronique"
   },
   { 
     id: 2,
@@ -20,7 +20,7 @@ const SLIDES_DATA = [
     description: "Quema calorías con nuestras bicicletas de spinning, bicicletas eléctricas, mancuernas, relojes inteligentes y un equipamiento completo de gimnasio en casa.",
     image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1000&auto=format&fit=crop&q=80",
     btnText: "Descubrir el universo Deporte",
-    link: "/productos?cat=sport"
+    link: "/produits?cat=sport"
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ const SLIDES_DATA = [
     description: "Marca la diferencia con nuestra selección exclusiva de Sneakers Nike, Jordan y New Balance auténticas y cómodas.",
     image: "https://images.unsplash.com/photo-1552346154-21d32810aba3?w=1000&auto=format&fit=crop&q=80",
     btnText: "Comprar mis Sneakers",
-    link: "/productos?cat=mode"
+    link: "/produits?cat=mode"
   },
   {
     id: 4,
@@ -38,7 +38,7 @@ const SLIDES_DATA = [
     description: "Mejora tu rutina con nuestros perfumes y productos de skincare / capilares, mientras simplificas tu día a día con la freidora de aire y nuestros robots aspiradores.",
     image: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=1000&auto=format&fit=crop&q=80",
     btnText: "Explorar la selección",
-    link: "/productos?cat=beaute"
+    link: "/produits?cat=beaute"
   }
 ];
 
@@ -104,7 +104,7 @@ export default function Hero() {
             <span className="banner-tag text-red">Moda</span>
             <h3>Sneakers de Tendencia: Nike, Jordan y New Balance</h3>
             <p>Encuentra los mejores estilos de zapatillas en Espana Deal.</p>
-            <Link href="/productos?cat=mode" className="btn-banner-small">
+            <Link href="/produits?cat=mode" className="btn-banner-small">
               Comprar
             </Link>
           </div>
@@ -122,7 +122,7 @@ export default function Hero() {
             <span className="banner-tag text-green">High-Tech</span>
             <h3>Smart Accessories & Audio</h3>
             <p>Disfruta de la mejor calidad de sonido y conectividad al mejor precio.</p>
-            <Link href="/productos?cat=electronique" className="btn-banner-small">
+            <Link href="/produits?cat=electronique" className="btn-banner-small">
               Comprar
             </Link>
           </div>
