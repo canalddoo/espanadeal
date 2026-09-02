@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Hero from "@/components/Hero";
 import { Suspense, useState, useEffect } from "react";
 import ContactPage from "./contact/page";
+import { CATEGORIES } from "@/lib/categories";
 
 
 const PRODUCTS_DATA = [
@@ -171,6 +172,49 @@ export function HomePageContent() {
           </div>
         </div>
       )}
+
+      {/* Section des Catégories */}
+      <section className="categories-section" style={{ marginBottom: "3rem" }}>
+        <h2 className="section-title" style={{ textAlign: "center", marginBottom: "1.5rem" }}>
+          Explorar por Categorías
+        </h2>
+
+        <div 
+          className="categories-grid" 
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+            gap: "1.5rem"
+          }}
+        >
+          {CATEGORIES.map((cat) => (
+            <Link
+              key={cat.slug}
+              href={`/categories/${cat.slug}`}
+              className="category-card"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "2rem 1rem",
+                border: "1px solid #e5e7eb",
+                borderRadius: "10px",
+                textDecoration: "none",
+                color: "#1f2937",
+                backgroundColor: "#ffffff",
+                boxShadow: "0 2px 4px rgba(0,0,0,0.05)",
+                transition: "transform 0.2s, box-shadow 0.2s",
+                textAlign: "center"
+              }}
+            >
+              <i className={`fas ${cat.icon}`} style={{ fontSize: "2.5rem", marginBottom: "1rem", color: "#0070f3" }}></i>
+              <h3 style={{ fontSize: "1.1rem", fontWeight: "600", margin: "0 0 0.5rem 0" }}>{cat.name}</h3>
+              <span style={{ fontSize: "0.85rem", color: "#6b7280" }}>Ver productos &rarr;</span>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       <div className="home-page-container">
         <div className="featured-hero">
