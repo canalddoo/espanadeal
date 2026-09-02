@@ -1,12 +1,10 @@
 "use client";
- 
+
 import { useState, useMemo } from "react";
 import { useCart } from "@/context/CartContext";
 import { useRouter } from "next/navigation";
 import { PRODUCTS_DATA } from "@/lib/products";
-
-
-
+import Link from "next/link";
 
 export default function ProductsPage() {
   const { addToCart } = useCart();
@@ -22,7 +20,14 @@ export default function ProductsPage() {
   };
 
   // Lista de categorías únicas dinámicas en español
-  const categories = ["Todos", "Dispositivos electrónicos", "Deporte / Fitness", "Belleza y cuidado personal", "Cocina", "Hogar"];
+  const categories = [
+    "Todos",
+    "Dispositivos electrónicos",
+    "Deporte / Fitness",
+    "Belleza y cuidado personal",
+    "Cocina",
+    "Hogar",
+  ];
 
   // Filtrar y ordenar la lista de productos de manera eficiente
   const filteredAndSortedProducts = useMemo(() => {
@@ -53,23 +58,25 @@ export default function ProductsPage() {
       <div className="catalog-controls">
         <div className="control-group">
           <label htmlFor="category-select">Categoría:</label>
-          <select 
+          <select
             id="category-select"
-            value={categoryFilter} 
+            value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
             className="filter-select"
           >
             {categories.map((cat) => (
-              <option key={cat} value={cat}>{cat}</option>
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
             ))}
           </select>
         </div>
 
         <div className="control-group">
           <label htmlFor="sort-select">Ordenar por:</label>
-          <select 
+          <select
             id="sort-select"
-            value={sortBy} 
+            value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
             className="filter-select"
           >
@@ -86,31 +93,41 @@ export default function ProductsPage() {
         {filteredAndSortedProducts.map((product) => (
           <div key={product.id} className="product-card">
             
-            <div className="product-image-wrapper">
-              <img 
-                src={product.image} 
+            {/* Image cliquable vers la page produit */}
+            <Link href={`/produits/${product.id}`} className="product-image-wrapper">
+              <img
+                src={product.image}
                 alt={product.name}
                 className="product-img"
                 loading="lazy"
               />
-            </div>
+            </Link>
 
             <div className="product-info">
               <span className="product-cat">{product.category}</span>
-              <h3 className="product-name">{product.name}</h3>
-              <p className="product-price">{product.price.toLocaleString()} €</p>
               
+              {/* Titre cliquable vers la page produit */}
+              <h3 className="product-name">
+                <Link href={`/produits/${product.id}`} style={{ textDecoration: "none", color: "inherit" }}>
+                  {product.name}
+                </Link>
+              </h3>
+
+              <p className="product-price">
+                {product.price.toLocaleString()} €
+              </p>
+
               <div className="product-card-actions">
-                <button 
-                  onClick={() => addToCart(product)} 
+                <button
+                  onClick={() => addToCart(product)}
                   className="btn-add-cart"
                   title="Añadir al carrito"
                   type="button"
                 >
                   <i className="fas fa-shopping-basket"></i> +
                 </button>
-                <button 
-                  onClick={() => handleBuyNow(product)} 
+                <button
+                  onClick={() => handleBuyNow(product)}
                   className="btn-buy-now"
                   type="button"
                 >
@@ -130,9 +147,6 @@ export default function ProductsPage() {
           <p>No hay artículos disponibles en esta categoría actualmente.</p>
         </div>
       )}
-
- 
-   
     </div>
   );
 }

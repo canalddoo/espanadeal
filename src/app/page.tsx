@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { useRouter, useSearchParams } from "next/navigation";
 import Hero from "@/components/Hero";
@@ -193,43 +194,53 @@ export function HomePageContent() {
         
         {filteredProducts.length > 0 ? (
           <div className="products-grid">
-            {filteredProducts.map((product) => (
-              <div key={product.id} className="product-card">
-                <div className="product-image-wrapper">
-                  <img 
-                    src={product.image} 
-                    alt={product.name}
-                    className="product-img"
-                    loading="lazy"
-                  />
-                </div>
+  {filteredProducts.map((product) => (
+    <div key={product.id} className="product-card">
+      
+      {/* 1. Image cliquable vers la page produit */}
+      <Link href={`/produits/${product.id}`} className="product-image-wrapper">
+        <img 
+          src={product.image} 
+          alt={product.name}
+          className="product-img"
+          loading="lazy"
+        />
+      </Link>
 
-                <div className="product-info">
-                  <span className="product-cat">{product.category}</span>
-                  <h3 className="product-name">{product.name}</h3>
-                  <p className="product-price">{product.price.toLocaleString()} €</p>
-                  
-                  <div className="product-card-actions">
-                    <button 
-                      onClick={() => addToCart(product)} 
-                      className="btn-add-cart"
-                      title="Añadir al carrito"
-                      type="button"
-                    >
-                      <i className="fas fa-shopping-basket"></i> +
-                    </button>
-                    <button 
-                      onClick={() => handleBuyNow(product)} 
-                      className="btn-buy-now"
-                      type="button"
-                    >
-                      Tramitar pedido
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+      <div className="product-info">
+        <span className="product-cat">{product.category}</span>
+        
+        {/* 2. Titre cliquable vers la page produit */}
+        <h3 className="product-name">
+          <Link href={`/produits/${product.id}`} style={{ textDecoration: "none", color: "inherit" }}>
+            {product.name}
+          </Link>
+        </h3>
+
+        <p className="product-price">{product.price.toLocaleString()} €</p>
+        
+        {/* Actions (Ajout au panier / Achat rapide) */}
+        <div className="product-card-actions">
+          <button 
+            onClick={() => addToCart(product)} 
+            className="btn-add-cart"
+            title="Añadir al carrito"
+            type="button"
+          >
+            <i className="fas fa-shopping-basket"></i> +
+          </button>
+          <button 
+            onClick={() => handleBuyNow(product)} 
+            className="btn-buy-now"
+            type="button"
+          >
+            Tramitar pedido
+          </button>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
         ) : (
           <div style={{ textAlign: "center", padding: "40px 20px", color: "#636366" }}>
             <i className="fas fa-search" style={{ fontSize: "30px", marginBottom: "15px", display: "block" }}></i>

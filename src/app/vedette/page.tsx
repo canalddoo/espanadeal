@@ -2,6 +2,7 @@
 
 import { useCart } from "@/context/CartContext";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 // Selección de los mejores productos reales de tu lista PRODUCTS_DATA
 const FEATURED_PRODUCTS = [
@@ -157,7 +158,8 @@ export default function FeaturedPage() {
         {FEATURED_PRODUCTS.map((product) => (
           <div key={product.id} className="product-card">
             
-            <div className="product-image-wrapper">
+            {/* Image cliquable vers la page produit */}
+            <Link href={`/produits/${product.id}`} className="product-image-wrapper">
               {/* Badge Dinámico en la imagen */}
               <span className="featured-badge">{product.tag}</span>
               
@@ -167,11 +169,18 @@ export default function FeaturedPage() {
                 className="product-img"
                 loading="lazy"
               />
-            </div>
+            </Link>
 
             <div className="product-info">
               <span className="product-cat">{product.category}</span>
-              <h3 className="product-name">{product.name}</h3>
+              
+              {/* Titre cliquable vers la page produit */}
+              <h3 className="product-name">
+                <Link href={`/produits/${product.id}`} style={{ textDecoration: "none", color: "inherit" }}>
+                  {product.name}
+                </Link>
+              </h3>
+
               <p className="product-price">{product.price.toLocaleString()} €</p>
               
               <div className="product-card-actions">
