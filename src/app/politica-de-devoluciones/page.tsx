@@ -40,8 +40,7 @@ export default function PoliticaDevoluciones() {
       <h2>6. Dirección de Devolución</h2>
       <p>
         <strong>ESPANA DEAL - Departamento de Devoluciones</strong><br />
-        Calle Gran Vía 28, Planta 4<br />
-        28013 Madrid, España
+        Puerta del Sol, 5, 28013 Madrid
       </p>
     </div>
   );

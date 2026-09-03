@@ -110,6 +110,8 @@ export default function PoliticaEnvio() {
       </p>
 
       <p>
+        <strong>Dirección:</strong> Puerta del Sol, 5, 28013 Madrid
+        <br />
         <strong>Email:</strong> contact@espanadeal.es
         <br />
         <strong>Teléfono:</strong> +34 666 754 415

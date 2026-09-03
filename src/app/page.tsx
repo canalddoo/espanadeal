@@ -11,52 +11,54 @@ import { CATEGORIES } from "@/lib/categories";
 
 const PRODUCTS_DATA = [
   
+// DISPOSITIVOS ELECTRÓNICOS & VIDEOJUEGOS
+  // ==========================================
+  { id: 3, name: "iPhone 12 Pro (Reacondicionado)", price: 169.99, category: "Dispositivos electrónicos", image: "https://c0.lestechnophiles.com/images.frandroid.com/wp-content/uploads/2020/10/iphone-12-max-frandroid-2020-768x768.png?webp=1&resize=580,580&key=85d800ac" },
+  { id: 4, name: "iPhone 13 (Reacondicionado)", price: 249.99, category: "Dispositivos electrónicos", image: "https://c0.lestechnophiles.com/images.frandroid.com/wp-content/uploads/2021/09/apple-iphone-13-frandroid-2021-768x768.png?webp=1&resize=580,580&key=a6b052d7" },
+  { id: 5, name: "iPhone 13 Pro Max (Reacondicionado)", price: 279.99, category: "Dispositivos electrónicos", image: "https://c0.lestechnophiles.com/images.frandroid.com/wp-content/uploads/2021/09/apple-iphone-13-pro-max-frandroid-2021-768x768.png?webp=1&key=33af98cc" },
+  { id: 7, name: "iPhone 14 Pro (Reacondicionado)", price: 359.99, category: "Dispositivos electrónicos", image: "https://c0.lestechnophiles.com/images.frandroid.com/wp-content/uploads/2022/09/iphone-14-pro-max-officiel-frandroid-2022-768x768.png?webp=1&key=1e26da76" },
+  { id: 8, name: "iPhone 15 (Reacondicionado)", price: 399.99, category: "Dispositivos electrónicos", image: "https://c0.lestechnophiles.com/images.frandroid.com/wp-content/uploads/2023/09/iphone-15-768x768.png?webp=1&key=62513184" },
+  { id: 9, name: "iPhone 15 Pro Max (Reacondicionado)", price: 449.99, category: "Dispositivos electrónicos", image: "https://c0.lestechnophiles.com/images.frandroid.com/wp-content/uploads/2023/09/iphone-15-pro-max-768x768.png?webp=1&key=6d7ed62f" },
+  { id: 10, name: "Apple iPhone 16 (128 GB) (Reacondicionado) - Cian + Funda Transparente con MagSafe", price: 589.99, category: "Dispositivos electrónicos", image: "/img/iPhone16.jpg" },
+  { id: 11, name: "iPhone 16 Pro Max (Reacondicionado)", price: 619.99, category: "Dispositivos electrónicos", image: "https://c0.lestechnophiles.com/images.frandroid.com/wp-content/uploads/2024/08/apple-iphone-16-pro-max-frandroid-2024-hd-768x768.png?webp=1&key=ce4d50e3" },
   
-  { id: 3, name: "iPhone 12 Pro (Reacondicionado)", price: 199.99, category: "Dispositivos electrónicos", image: "https://c0.lestechnophiles.com/images.frandroid.com/wp-content/uploads/2020/10/iphone-12-max-frandroid-2020-768x768.png?webp=1&resize=580,580&key=85d800ac" },
-  { id: 4, name: "iPhone 13 (Reacondicionado)", price: 299.99, category: "Dispositivos electrónicos", image: "https://c0.lestechnophiles.com/images.frandroid.com/wp-content/uploads/2021/09/apple-iphone-13-frandroid-2021-768x768.png?webp=1&resize=580,580&key=a6b052d7" },
-  { id: 5, name: "iPhone 13 Pro Max (Reacondicionado)", price: 329.99, category: "Dispositivos electrónicos", image: "https://c0.lestechnophiles.com/images.frandroid.com/wp-content/uploads/2021/09/apple-iphone-13-pro-max-frandroid-2021-768x768.png?webp=1&key=33af98cc" },
-  { id: 7, name: "iPhone 14 Pro (Reacondicionado)", price: 419.99, category: "Dispositivos electrónicos", image: "https://c0.lestechnophiles.com/images.frandroid.com/wp-content/uploads/2022/09/iphone-14-pro-max-officiel-frandroid-2022-768x768.png?webp=1&key=1e26da76" },
-  { id: 8, name: "iPhone 15 (Reacondicionado)", price: 459.99, category: "Dispositivos electrónicos", image: "https://c0.lestechnophiles.com/images.frandroid.com/wp-content/uploads/2023/09/iphone-15-768x768.png?webp=1&key=62513184" },
-  { id: 9, name: "iPhone 15 Pro Max (Reacondicionado)", price: 519.99, category: "Dispositivos electrónicos", image: "https://c0.lestechnophiles.com/images.frandroid.com/wp-content/uploads/2023/09/iphone-15-pro-max-768x768.png?webp=1&key=6d7ed62f" },
-  { id: 10, name: "Apple iPhone 16 (128 GB) (Reacondicionado) - Cian + Funda Transparente con MagSafe", price: 669.99, category: "Dispositivos electrónicos", image: "/img/iPhone16.jpg" },
-  { id: 11, name: "iPhone 16 Pro Max (Reacondicionado)", price: 689.99, category: "Dispositivos electrónicos", image: "https://c0.lestechnophiles.com/images.frandroid.com/wp-content/uploads/2024/08/apple-iphone-16-pro-max-frandroid-2024-hd-768x768.png?webp=1&key=ce4d50e3" },
-  
-  { id: 13, name: "Apple AirPods Pro 3 Auriculares Inalámbricos, Cancelación Activa de Ruido", price: 149, category: "Dispositivos electrónicos", image: "/img/AppleAirPodsPro3.jpg" },
-  { id: 14, name: "Sony WH-1000XM5SA Edición Especial con estuche blando, Cancelación Activa de Ruido, Bluetooth, calidad de llamada clara", price: 209, category: "Dispositivos electrónicos", image: "/img/SonyWH-1000XM5SA.jpg" },
-  { id: 15, name: "Apple Watch Series 9 (GPS + Cellular, 45 MM) Caja de Aluminio Blanco Estrella con Correa Deportiva Blanco Estrella, M/L (Reacondicionado)", price: 369, category: "Dispositivos electrónicos", image: "/img/AppleWatchSeries9.jpg" },
-  { id: 16, name: "CUKTECH Cargador USB C 100W, 3 Puertos GaN III Tech y PPS PD3.0 Cargador Rápido, Cargador 100W USB C Rápido", price: 34.99, category: "Dispositivos electrónicos", image: "/img/CUKTECHChargeurUSBC.jpg" },
- { id: 46, name: "Soundcore Space One Auricules de Diadema Bluetooth Inalámbricos con Cancelación Activa de Ruido Adaptativa de Anker", price: 19.99, category: "Dispositivos electrónicos", image: "/img/SoundcoreSpaceOneCasque.jpg" },
-  { id: 47, name: "COROS Pace 4 Reloj Deportivo Ultraligero con Sensor de Frecuencia Cardíaca", price: 319, category: "Dispositivos electrónicos", image: "/img/COROSPace4Montre.jpg" },
-  { id: 61, name: "Cámara de videoconferencia todo en uno de 360° KanDao Meeting Pro, HD 1080p con micrófonos omnidireccionales, enfoque y zoom automáticos", price: 619, category: "Dispositivos electrónicos", image: "/img/KanDaoMeeting.jpg" },
-  { id: 63, name: "DJI Osmo Pocket 4 Essential Bundle, cámara de vlogging de bolsillo con gimbal | Sensor CMOS de 1 pulgada y 4K/240 fps, estabilización de 3 ejes", price: 469, category: "Dispositivos electrónicos", image: "/img/BundleEssentielDJIOsmoPocket4.jpg" },
-  { id: 17, name: "Sony, Consola PlayStation 5 Edición Estándar 1 TB con lector Blu-ray 4K, SSD Ultrarrápido, Audio 3D", price: 479.99, category: "Dispositivos electrónicos", image: "/img/SonyConsolePlayStation5.jpg" },
-  { id: 18, name: "Playstation Sony, Reproductor a Distancia Portal 5, Pantalla LCD Full HD de 8\", Juegos en Streaming vía Wi-Fi", price: 209, category: "Dispositivos electrónicos", image: "/img/PlaystationSonyLecteur.jpg" },
-  { id: 19, name: "Nintendo Switch (OLED) Consola de Juegos Portátil de 17,8 cm, 64 GB, Pantalla Táctil, WiFi, Blanco", price: 199, category: "Dispositivos electrónicos", image: "/img/NintendoSwitch.jpg" },
+  { id: 13, name: "Apple AirPods Pro 3 Auriculares Inalámbricos, Cancelación Activa de Ruido", price: 129, category: "Dispositivos electrónicos", image: "/img/AppleAirPodsPro3.jpg" },
+  { id: 14, name: "Sony WH-1000XM5SA Edición Especial con estuche blando, Cancelación Activa de Ruido, Bluetooth, calidad de llamada clara", price: 179, category: "Dispositivos electrónicos", image: "/img/SonyWH-1000XM5SA.jpg" },
+  { id: 15, name: "Apple Watch Series 9 (GPS + Cellular, 45 MM) Caja de Aluminio Blanco Estrella con Correa Deportiva Blanco Estrella, M/L (Reacondicionado)", price: 319, category: "Dispositivos electrónicos", image: "/img/AppleWatchSeries9.jpg" },
+  { id: 16, name: "CUKTECH Cargador USB C 100W, 3 Puertos GaN III Tech y PPS PD3.0 Cargador Rápido, Cargador 100W USB C Rápido", price: 27.99, category: "Dispositivos electrónicos", image: "/img/CUKTECHChargeurUSBC.jpg" },
+  { id: 46, name: "Soundcore Space One Auricules de Diadema Bluetooth Inalámbricos con Cancelación Activa de Ruido Adaptativa de Anker", price: 14.99, category: "Dispositivos electrónicos", image: "/img/SoundcoreSpaceOneCasque.jpg" },
+  { id: 47, name: "COROS Pace 4 Reloj Deportivo Ultraligero con Sensor de Frecuencia Cardíaca", price: 279, category: "Dispositivos electrónicos", image: "/img/COROSPace4Montre.jpg" },
+  { id: 61, name: "Cámara de videoconferencia todo en uno de 360° KanDao Meeting Pro, HD 1080p con micrófonos omnidireccionales, enfoque y zoom automáticos", price: 529, category: "Dispositivos electrónicos", image: "/img/KanDaoMeeting.jpg" },
+  { id: 63, name: "DJI Osmo Pocket 4 Essential Bundle, cámara de vlogging de bolsillo con gimbal | Sensor CMOS de 1 pulgada y 4K/240 fps, estabilización de 3 ejes", price: 399, category: "Dispositivos electrónicos", image: "/img/BundleEssentielDJIOsmoPocket4.jpg" },
+  { id: 17, name: "Sony, Consola PlayStation 5 Edición Estándar 1 TB con lector Blu-ray 4K, SSD Ultrarrápido, Audio 3D", price: 419.99, category: "Dispositivos electrónicos", image: "/img/SonyConsolePlayStation5.jpg" },
+  { id: 18, name: "Playstation Sony, Reproductor a Distancia Portal 5, Pantalla LCD Full HD de 8\", Juegos en Streaming vía Wi-Fi", price: 179, category: "Dispositivos electrónicos", image: "/img/PlaystationSonyLecteur.jpg" },
+  { id: 19, name: "Nintendo Switch (OLED) Consola de Juegos Portátil de 17,8 cm, 64 GB, Pantalla Táctil, WiFi, Blanco", price: 169, category: "Dispositivos electrónicos", image: "/img/NintendoSwitch.jpg" },
 
   // ==========================================
-  // DEPORTE / FITNESS (14 Productos)
+  // DEPORTE / FITNESS
   // ==========================================
-  { id: 23, name: "Skechers Uno Stand on Air Zapatillas", price: 49, category: "Deporte / Fitness", image: "/img/SkechersUnoStandonAir.jpg" },
-  { id: 24, name: "Skechers Uno-Night Shades, Zapatillas", price: 54.99, category: "Deporte / Fitness", image: "/img/SkechersUno-NightShades.jpg" },
-  { id: 27, name: "Kit de Mancuernas Ajustables (20kg)", price: 45, category: "Deporte / Fitness", image: "/img/Halteres-reglables.jpg" },
-  { id: 42, name: "URLIFE Bicicleta Eléctrica para Adultos, Neumáticos Anchos de 16\"", price: 1199, category: "Deporte / Fitness", image: "/img/URLIFEVeloelectrique.jpg" },
-  { id: 43, name: "ZIPRO Bicicleta Estática para Adulto con Resistencia Magnética de 8 Niveles, Pantalla LCD", price: 109, category: "Deporte / Fitness", image: "/img/ZIPROVelo.jpg" },
-  { id: 49, name: "FabricBike Aero - Bicicleta de Piñón Fijo, Fixie Completa de Una Sola Velocidad, Cuadro de Aluminio", price: 549.99, category: "Deporte / Fitness", image: "/img/FabricBikeAero.jpg" },
-  { id: 50, name: "Dskeuzeew Bicicleta Estática Profesional para Gimnasio con Pantalla LCD y Portavasos", price: 239, category: "Deporte / Fitness", image: "/img/DskeuzeewVélo.jpg" },
-  { id: 52, name: "PROIRON Tapis de Yoga Epais 10MM/15MM,Antidérapant Tapis d'exercice Fitness", price: 22.99, category: "Deporte / Fitness", image: "/img/PROIRONTapis.jpg" },
-  { id: 53, name: "Amazon Basics Slam Medicine Balls for Exercise", price: 18.99, category: "Deporte / Fitness", image: "/img/AmazonBasics.jpg" },
-  { id: 54, name: "QIANBAIYI Support d'haltères, à 3 positions, peu encombrant, pour la salle de gym à la maison et la salle de sport, organisateur pour haltères", price: 85, category: "Deporte / Fitness", image: "/img/QIANBAIYISupport.jpg" },
-
-  // BELLEZA Y CUIDADO PERSONAL (3 Productos)
+  { id: 23, name: "Skechers Uno Stand on Air Zapatillas", price: 39, category: "Deporte / Fitness", image: "/img/SkechersUnoStandonAir.jpg" },
+  { id: 24, name: "Skechers Uno-Night Shades, Zapatillas", price: 42.99, category: "Deporte / Fitness", image: "/img/SkechersUno-NightShades.jpg" },
+  { id: 27, name: "Kit de Mancuernas Ajustables (20kg)", price: 34.99, category: "Deporte / Fitness", image: "/img/Halteres-reglables.jpg" },
+  { id: 42, name: "URLIFE Bicicleta Eléctrica para Adultos, Neumáticos Anchos de 16\"", price: 999, category: "Deporte / Fitness", image: "/img/URLIFEVeloelectrique.jpg" },
+  { id: 43, name: "ZIPRO Bicicleta Estática para Adulto con Resistencia Magnética de 8 Niveles, Pantalla LCD", price: 89, category: "Deporte / Fitness", image: "/img/ZIPROVelo.jpg" },
+  { id: 49, name: "FabricBike Aero - Bicicleta de Piñón Fijo, Fixie Completa de Una Sola Velocidad, Cuadro de Aluminio", price: 469.99, category: "Deporte / Fitness", image: "/img/FabricBikeAero.jpg" },
+  { id: 50, name: "Dskeuzeew Bicicleta Estática Profesional para Gimnasio con Pantalla LCD y Portavasos", price: 189, category: "Deporte / Fitness", image: "/img/DskeuzeewVélo.jpg" },
+  { id: 52, name: "PROIRON Tapis de Yoga Epais 10MM/15MM,Antidérapant Tapis d'exercice Fitness", price: 17.99, category: "Deporte / Fitness", image: "/img/PROIRONTapis.jpg" },
+  { id: 53, name: "Amazon Basics Slam Medicine Balls for Exercise", price: 14.99, category: "Deporte / Fitness", image: "/img/AmazonBasics.jpg" },
+  { id: 54, name: "QIANBAIYI Support d'haltères, à 3 positions, peu encombrant, pour la salle de gym à la maison et la salle de sport, organisateur pour haltères", price: 69, category: "Deporte / Fitness", image: "/img/QIANBAIYISupport.jpg" },
   // ==========================================
-  { id: 30, name: "MIXA - Sérum Booster de Hidratación Intensa 24H - Rellena e Ilumina", price: 7.99, category: "Belleza y cuidado personal", image: "/img/MIXASérumBooste.jpg" },
-  { id: 31, name: "CeraVe Crema Hidratante para Rostro y Cuerpo, Hidratación 48H", price: 16.99, category: "Belleza y cuidado personal", image: "/img/CeraVeBaume.jpg" },
-  { id: 32, name: "JEANNE ARTHES - Perfume para Hombre Sexy Boy Intense - Eau de Parfum - 100 ml", price: 5.99, category: "Belleza y cuidado personal", image: "/img/JEANNEARTHES.jpg" },
-
- { id: 48, name: "GASLAND GIH604BF Placa Mixta de Gas e Inducción 60 cm, Gas 5200 W con quemador wok", price: 339, category: "Cocina", image: "/img/GASLANDGIH604BF.jpg" },
-  { id: 55, name: "Bissell PowerClean FurGuard 280W Aspiradora inalámbrica que se mantiene en pie con cepillo autolimpiante, succión fuerte, battery extraíble", price: 219.99, category: "Hogar", image: "/img/BissellPowerClean.jpg" },
-  { id: 57, name: "DREAME H15 Pro CarpetFlex aspiradora inalámbrica con mopa, aspiradora húmeda y seca con cepillos duales para pisos duros y alfombras", price: 359, category: "Hogar", image: "/img/DREAMEH15Pro.jpg" }
-
+  // BELLEZA Y CUIDADO PERSONAL
+  // ==========================================
+  { id: 30, name: "MIXA - Sérum Booster de Hidratación Intensa 24H - Rellena e Ilumina", price: 5.99, category: "Belleza y cuidado personal", image: "/img/MIXASérumBooste.jpg" },
+  { id: 31, name: "CeraVe Crema Hidratante para Rostro y Cuerpo, Hidratación 48H", price: 12.99, category: "Belleza y cuidado personal", image: "/img/CeraVeBaume.jpg" },
+  { id: 32, name: "JEANNE ARTHES - Perfume para Hombre Sexy Boy Intense - Eau de Parfum - 100 ml", price: 4.50, category: "Belleza y cuidado personal", image: "/img/JEANNEARTHES.jpg" },
+  // ==========================================
+  // HOGAR & COCINA
+  // ==========================================
+  { id: 48, name: "GASLAND GIH604BF Placa Mixta de Gas e Inducción 60 cm, Gas 5200 W con quemador wok", price: 279, category: "Cocina", image: "/img/GASLANDGIH604BF.jpg" },
+  { id: 55, name: "Bissell PowerClean FurGuard 280W Aspiradora inalámbrica que se mantiene en pie con cepillo autolimpiante, succión fuerte, battery extraíble", price: 179.99, category: "Hogar", image: "/img/BissellPowerClean.jpg" },
+  { id: 57, name: "DREAME H15 Pro CarpetFlex aspiradora inalámbrica con mopa, aspiradora húmeda y seca con cepillos duales para pisos duros y alfombras", price: 299, category: "Hogar", image: "/img/DREAMEH15Pro.jpg" }
 
 ];
 

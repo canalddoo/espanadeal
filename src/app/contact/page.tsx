@@ -126,7 +126,7 @@ export default function ContactPage() {
               <div className="info-text">
                 <h3>Nuestra Sede Social</h3>
                 <p className="info-address">
-                  Calle Gran Vía 28, Planta 4<br />
+                  Puerta del Sol, 5<br />
                   28013 Madrid, España
                 </p>
                 <p className="info-cif"><strong>CIF:</strong> 47609196R</p>
