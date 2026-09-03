@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="footer-col">
           <h3>ESPANA DEAL</h3>
           <p className="footer-company-info">
-            Calle Gran Vía 28, Planta 4<br />
+            Puerta del Sol, 5<br />
             28013 Madrid, España
           </p>
           <p className="footer-contact-info">
