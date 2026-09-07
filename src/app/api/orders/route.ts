@@ -2,24 +2,22 @@ import { NextResponse } from "next/server";
 import { db } from "@/db";
 import { orders, orderItems } from "@/db/schema";
 import { desc, eq } from "drizzle-orm";
- 
-// GET : Récupérer toutes les commandes avec leurs articles respectifs
+
+// GET : Récupérer toutes les commandes avec leurs informations clients
 export async function GET() {
   try {
-    // 1. Récupérer d'abord toutes les commandes triées par date décroissante
     const dbOrders = await db.select().from(orders).orderBy(desc(orders.date));
 
-    // 2. Associer manuellement les articles correspondants à chaque commande
     const result = await Promise.all(
       dbOrders.map(async (order) => {
         const items = await db
           .select()
           .from(orderItems)
           .where(eq(orderItems.orderId, order.id));
-          
+
         return {
           ...order,
-          items, // Tableau d'articles injecté pour la page admin
+          items,
         };
       })
     );
@@ -34,29 +32,42 @@ export async function GET() {
   }
 }
 
-// POST : Créer une nouvelle commande reçue depuis le panier
+// POST : Créer une nouvelle commande
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { id, date, total, items } = body;
+    const { id, date, total, items, customerName, address, city, contact } = body;
 
-    // Validation simple des données reçues
-    if (!id || total === undefined || !items || items.length === 0) {
+    // Validation des données
+    if (
+      !id ||
+      total === undefined ||
+      !items ||
+      items.length === 0 ||
+      !customerName ||
+      !address ||
+      !city ||
+      !contact
+    ) {
       return NextResponse.json(
-        { error: "Datos incompletos para procesar el pedido" },
+        { error: "Por favor, complete todos los campos obligatorios." },
         { status: 400 }
       );
     }
 
-    // 1. Insérer la commande principale
+    // 1. Enregistrement de la commande avec infos client
     await db.insert(orders).values({
       id,
       date,
       total,
       status: "Pendiente de pago",
+      customerName,
+      address,
+      city,
+      contact,
     });
 
-    // 2. Insérer tous les articles rattachés à cette commande
+    // 2. Enregistrement des articles rattachés
     for (const item of items) {
       await db.insert(orderItems).values({
         orderId: id,

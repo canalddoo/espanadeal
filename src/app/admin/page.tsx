@@ -16,6 +16,11 @@ interface Order {
   items: OrderItem[];
   total: number;
   status: string;
+  // Nouveaux champs clients
+  customerName?: string;
+  address?: string;
+  city?: string;
+  contact?: string;
 }
 
 export default function AdminPage() {
@@ -34,7 +39,7 @@ export default function AdminPage() {
     countriesStats: [],
   });
 
-  // Vérifier si l'admin est déjà connecté (via sessionStorage)
+  // Vérifier si l'admin est déjà connecté
   useEffect(() => {
     const loggedIn = sessionStorage.getItem("admin_logged_in");
     if (loggedIn === "true") {
@@ -42,7 +47,7 @@ export default function AdminPage() {
     }
   }, []);
 
-  // Charger les données 
+  // Charger les commandes
   useEffect(() => {
     if (!isAuthenticated) return;
 
@@ -62,7 +67,7 @@ export default function AdminPage() {
     fetchOrders();
   }, [isAuthenticated]);
 
-  // Charger les statistiques de visites si authentifié
+  // Charger les statistiques de visites
   useEffect(() => {
     if (!isAuthenticated) return;
 
@@ -81,7 +86,16 @@ export default function AdminPage() {
     fetchStats();
   }, [isAuthenticated]);
 
-  // Gérer la connexion
+  // Charger les coordonnées bancaires
+  useEffect(() => {
+    if (!isAuthenticated) return;
+    fetch("/api/bank-details")
+      .then((res) => res.json())
+      .then((data) => setBank(data))
+      .catch(console.error);
+  }, [isAuthenticated]);
+
+  // Connexion
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -97,12 +111,13 @@ export default function AdminPage() {
     }
   };
 
-  // Gérer la déconnexion
+  // Déconnexion
   const handleLogout = () => {
     setIsAuthenticated(false);
     sessionStorage.removeItem("admin_logged_in");
   };
 
+  // Changement de statut
   const handleStatusChange = async (orderId: string, newStatus: string) => {
     try {
       const response = await fetch(`/api/orders/${orderId}`, {
@@ -121,7 +136,7 @@ export default function AdminPage() {
     }
   };
 
-  // Suppression de la commande (Appelle la méthode DELETE du backend)
+  // Suppression
   const handleDeleteOrder = async (orderId: string) => {
     if (!confirm("¿Está seguro de que desea eliminar este pedido del historial definitivamente?")) return;
 
@@ -140,34 +155,24 @@ export default function AdminPage() {
     }
   };
 
-  // Charger les données bancaires au démarrage si authentifié
-useEffect(() => {
-  if (!isAuthenticated) return;
-  fetch("/api/bank-details")
-    .then((res) => res.json())
-    .then((data) => setBank(data))
-    .catch(console.error);
-}, [isAuthenticated]);
+  // Mise à jour banque
+  const handleBankUpdate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSavingBank(true);
+    try {
+      const res = await fetch("/api/bank-details", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(bank),
+      });
+      if (res.ok) alert("Datos bancarios actualizados correctamente.");
+    } catch (error) {
+      alert("Error al actualizar.");
+    } finally {
+      setSavingBank(false);
+    }
+  };
 
-const handleBankUpdate = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setSavingBank(true);
-  try {
-    const res = await fetch("/api/bank-details", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(bank),
-    });
-    if (res.ok) alert("Datos bancarios actualizados correctamente.");
-  } catch (error) {
-    alert("Error al actualizar.");
-  } finally {
-    setSavingBank(false);
-  }
-};
-
-
-  // ÉCRAN DE CONNEXION (Si non authentifié)
   if (!isAuthenticated) {
     return (
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "80vh" }}>
@@ -198,10 +203,9 @@ const handleBankUpdate = async (e: React.FormEvent) => {
     return <div className="admin-container"><p>Cargando pedidos desde Turso...</p></div>;
   }
 
-  // ÉCRAN PRINCIPAL (Si connecté)
   return (
     <div className="admin-container">
-      <div className="admin-header" style={{ display: "flex", justifyContent: "between", alignItems: "center" }}>
+      <div className="admin-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <div>
           <h1 className="admin-title"><i className="fas fa-user-shield"></i> Panel de Control - Administración</h1>
           <span className="admin-badge">{orders.length} Pedido(s) recibido(s)</span>
@@ -210,72 +214,70 @@ const handleBankUpdate = async (e: React.FormEvent) => {
           Cerrar Sesión
         </button>
       </div>
-      {/* SECTION STATISTIQUES DE VISITES */}
-<div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "20px", marginBottom: "30px" }}>
-  
-  {/* Carte du Total */}
-  <div style={{ background: "#fff", padding: "20px", borderRadius: "8px", boxShadow: "0 2px 8px rgba(0,0,0,0.05)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-    <i className="fas fa-eye" style={{ fontSize: "32px", color: "#0070f3", marginBottom: "10px" }}></i>
-    <h3 style={{ margin: 0, color: "#666", fontSize: "14px", textTransform: "uppercase" }}>Visitas Totales</h3>
-    <strong style={{ fontSize: "36px", color: "#111", marginTop: "5px" }}>{stats.totalVisits}</strong>
-  </div>
 
-  {/* Tableau/Liste des Pays */}
-  <div style={{ background: "#fff", padding: "20px", borderRadius: "8px", boxShadow: "0 2px 8px rgba(0,0,0,0.05)" }}>
-    <h3 style={{ margin: "0 0 15px 0", fontSize: "16px" }}><i className="fas fa-globe-americas"></i> Origen de los visitantes</h3>
-    <div style={{ maxHeight: "120px", overflowY: "auto" }}>
-      {stats.countriesStats.length === 0 ? (
-        <p style={{ color: "#888", fontSize: "14px" }}>No hay datos de visitas aún.</p>
-      ) : (
-        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "14px" }}>
-          <thead>
-            <tr style={{ borderBottom: "1px solid #eee", textAlign: "left", color: "#666" }}>
-              <th style={{ paddingBottom: "5px" }}>País / Código</th>
-              <th style={{ paddingBottom: "5px", textAlign: "right" }}>Visitas</th>
-            </tr>
-          </thead>
-          <tbody>
-            {stats.countriesStats.map((item, index) => (
-              <tr key={index} style={{ borderBottom: "1px solid #f9f9f9" }}>
-                <td style={{ padding: "6px 0", fontWeight: "500" }}>
-                  <span style={{ marginRight: "8px" }}>📍</span>
-                  {item.country === "Unknown" ? "Desconocido" : item.country}
-                </td>
-                <td style={{ padding: "6px 0", textAlign: "right", fontWeight: "bold", color: "#0070f3" }}>
-                  {item.count}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-    </div>
-  </div>
+      {/* STATISTIQUES */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "20px", marginBottom: "30px" }}>
+        <div style={{ background: "#fff", padding: "20px", borderRadius: "8px", boxShadow: "0 2px 8px rgba(0,0,0,0.05)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+          <i className="fas fa-eye" style={{ fontSize: "32px", color: "#0070f3", marginBottom: "10px" }}></i>
+          <h3 style={{ margin: 0, color: "#666", fontSize: "14px", textTransform: "uppercase" }}>Visitas Totales</h3>
+          <strong style={{ fontSize: "36px", color: "#111", marginTop: "5px" }}>{stats.totalVisits}</strong>
+        </div>
 
-</div>
+        <div style={{ background: "#fff", padding: "20px", borderRadius: "8px", boxShadow: "0 2px 8px rgba(0,0,0,0.05)" }}>
+          <h3 style={{ margin: "0 0 15px 0", fontSize: "16px" }}><i className="fas fa-globe-americas"></i> Origen de los visitantes</h3>
+          <div style={{ maxHeight: "120px", overflowY: "auto" }}>
+            {stats.countriesStats.length === 0 ? (
+              <p style={{ color: "#888", fontSize: "14px" }}>No hay datos de visitas aún.</p>
+            ) : (
+              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "14px" }}>
+                <thead>
+                  <tr style={{ borderBottom: "1px solid #eee", textAlign: "left", color: "#666" }}>
+                    <th style={{ paddingBottom: "5px" }}>País / Código</th>
+                    <th style={{ paddingBottom: "5px", textAlign: "right" }}>Visitas</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {stats.countriesStats.map((item, index) => (
+                    <tr key={index} style={{ borderBottom: "1px solid #f9f9f9" }}>
+                      <td style={{ padding: "6px 0", fontWeight: "500" }}>
+                        <span style={{ marginRight: "8px" }}>📍</span>
+                        {item.country === "Unknown" ? "Desconocido" : item.country}
+                      </td>
+                      <td style={{ padding: "6px 0", textAlign: "right", fontWeight: "bold", color: "#0070f3" }}>
+                        {item.count}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
+        </div>
+      </div>
 
-
+      {/* CONFIGURATION BANQUE */}
       <div style={{ background: "#fff", padding: "20px", borderRadius: "8px", boxShadow: "0 2px 8px rgba(0,0,0,0.05)", marginBottom: "30px" }}>
-  <h3><i className="fas fa-university"></i> Configuración de Cuenta Bancaria</h3>
-  <form onSubmit={handleBankUpdate} style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr auto", gap: "15px", alignItems: "end", marginTop: "15px" }}>
-    <div>
-      <label style={{ display: "block", fontSize: "14px", marginBottom: "5px" }}>Beneficiario</label>
-      <input type="text" value={bank.beneficiary} onChange={(e) => setBank({ ...bank, beneficiary: e.target.value })} style={{ width: "100%", padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }} required />
-    </div>
-    <div>
-      <label style={{ display: "block", fontSize: "14px", marginBottom: "5px" }}>IBAN</label>
-      <input type="text" value={bank.iban} onChange={(e) => setBank({ ...bank, iban: e.target.value })} style={{ width: "100%", padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }} required />
-    </div>
-    <div>
-      <label style={{ display: "block", fontSize: "14px", marginBottom: "5px" }}>SWIFT / BIC</label>
-      <input type="text" value={bank.bic} onChange={(e) => setBank({ ...bank, bic: e.target.value })} style={{ width: "100%", padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }} required />
-    </div>
-    <button type="submit" disabled={savingBank} style={{ padding: "10px 20px", background: "#2ecc71", color: "#fff", border: "none", borderRadius: "4px", cursor: "pointer", fontWeight: "bold" }}>
-      {savingBank ? "Guardando..." : "Actualizar Cuenta"}
-    </button>
-  </form>
-</div>
+        <h3><i className="fas fa-university"></i> Configuración de Cuenta Bancaria</h3>
+        <form onSubmit={handleBankUpdate} style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr auto", gap: "15px", alignItems: "end", marginTop: "15px" }}>
+          <div>
+            <label style={{ display: "block", fontSize: "14px", marginBottom: "5px" }}>Beneficiario</label>
+            <input type="text" value={bank.beneficiary} onChange={(e) => setBank({ ...bank, beneficiary: e.target.value })} style={{ width: "100%", padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }} required />
+          </div>
+          <div>
+            <label style={{ display: "block", fontSize: "14px", marginBottom: "5px" }}>IBAN</label>
+            <input type="text" value={bank.iban} onChange={(e) => setBank({ ...bank, iban: e.target.value })} style={{ width: "100%", padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }} required />
+          </div>
+          <div>
+            <label style={{ display: "block", fontSize: "14px", marginBottom: "5px" }}>SWIFT / BIC</label>
+            <input type="text" value={bank.bic} onChange={(e) => setBank({ ...bank, bic: e.target.value })} style={{ width: "100%", padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }} required />
+          </div>
+          <button type="submit" disabled={savingBank} style={{ padding: "10px 20px", background: "#2ecc71", color: "#fff", border: "none", borderRadius: "4px", cursor: "pointer", fontWeight: "bold" }}>
+            {savingBank ? "Guardando..." : "Actualizar Cuenta"}
+          </button>
+        </form>
+      </div>
 
+      {/* LISTE DES COMMANDES */}
       {orders.length === 0 ? (
         <div className="admin-empty-state">
           <i className="fas fa-inbox admin-empty-icon"></i>
@@ -300,6 +302,20 @@ const handleBankUpdate = async (e: React.FormEvent) => {
                   <span className={`admin-status-pill status-${order.status.toLowerCase().replace(/\s+/g, "-")}`}>
                     {order.status}
                   </span>
+                </div>
+              </div>
+
+              {/* SECTION INFOS CLIENT */}
+              <div style={{ background: "#f8f9fa", padding: "15px", borderRadius: "6px", margin: "15px 0", borderLeft: "4px solid #0070f3" }}>
+                <h4 style={{ margin: "0 0 10px 0", color: "#2c3e50", fontSize: "15px" }}>
+                  <i className="fas fa-user-tag" style={{ marginRight: "8px" }}></i>
+                  Datos del Cliente y Entrega
+                </h4>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "10px", fontSize: "14px" }}>
+                  <p style={{ margin: 0 }}><strong>Cliente:</strong> {order.customerName || "N/A"}</p>
+                  <p style={{ margin: 0 }}><strong>Dirección:</strong> {order.address || "N/A"}</p>
+                  <p style={{ margin: 0 }}><strong>Ciudad:</strong> {order.city || "N/A"}</p>
+                  <p style={{ margin: 0 }}><strong>WhatsApp / Email:</strong> <span style={{ color: "#0070f3", fontWeight: "bold" }}>{order.contact || "N/A"}</span></p>
                 </div>
               </div>
 
